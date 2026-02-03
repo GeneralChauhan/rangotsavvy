@@ -89,7 +89,7 @@ function PaymentContent() {
         setBookingData({
           visitorName: visitorName,
           visitorEmail: email,
-          phoneNumber: (booking as any).phone_number || "",
+          phoneNumber: (booking as any).visitor_phone || (booking as any).phone_number || "",
           skuName: (booking.skus as any)?.name || "Ticket",
           quantity: booking.quantity || 1,
           totalPrice: totalPrice,

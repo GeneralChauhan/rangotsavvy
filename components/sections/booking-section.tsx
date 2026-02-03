@@ -534,7 +534,7 @@ export function BookingSection({
         coupon_code: appliedCoupon?.code || null,
         visitor_name: visitorName,
         visitor_email: visitorEmail,
-        phone_number: phoneNumber,
+        visitor_phone: phoneNumber,
         status: "pending" as const,
       };
     });
@@ -676,7 +676,7 @@ export function BookingSection({
         body: JSON.stringify({
           amount: Math.round((bookingData.totalPrice) * 100), // Convert to paise
           redirectUrl: `${window.location.origin}/booking?payment_success=true`,
-          message: `Payment for ${bookingData.eventName || 'Van Gogh – An Immersive Story'}`
+          message: `Payment for ${bookingData.eventName || 'Rangotsav – 4th Holi 2026'}`
         }),
       });
 
@@ -762,6 +762,7 @@ export function BookingSection({
 
       const qrCodeDataUrl = await generateBookingQRCode(qrData);
 
+      // Update ALL bookings status to confirmed and store QR code
       const { data: updatedBookings, error } = await supabase
         .from("bookings")
         .update({ 
@@ -787,7 +788,7 @@ export function BookingSection({
           )
         `);
 
-
+        
       if (error) {
         console.error("Error updating bookings:", error);
         alert("Payment processed but failed to update bookings. Please contact support.");
@@ -1311,7 +1312,7 @@ export function BookingSection({
                   <Button
                     variant="outline"
                     onClick={() => setCurrentStep("checkout")}
-                    className="w-full bg-transparent border-gray-300 text-black hover:bg-gray-50"
+                    className="w-full opacity-50 border-gray-300 text-black hover:bg-gray-50"
                     data-umami-event="cancel-booking"
                   >
                     Cancel Booking
@@ -2015,7 +2016,7 @@ export function BookingSection({
                 <Button
                   variant="destructive"
                   onClick={() => navigateToStep("checkout")}
-                  className="w-full bg-transparent border-gray-300 "
+                  className="w-full opacity-50 border-gray-300 "
                 >
                   Cancel Booking
                 </Button>
