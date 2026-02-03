@@ -668,7 +668,7 @@ export function BookingSection({
     setProcessingPayment(true);
     
     try {
-      const phonePeResponse = await fetch('http://localhost:3000/api/phonepe/pay', {
+      const phonePeResponse = await fetch('https://payment-lovat-eight.vercel.app/api/phonepe/pay', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -721,7 +721,7 @@ export function BookingSection({
       if (!bookingData?.bookingIds) return;
 
       // Verify payment status with backend
-      const statusResponse = await fetch('http://localhost:3000/api/phonepe/order-status', {
+      const statusResponse = await fetch('https://payment-lovat-eight.vercel.app/api/phonepe/order-status', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
