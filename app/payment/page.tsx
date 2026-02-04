@@ -259,7 +259,7 @@ function PaymentContent() {
             </Card>
 
             {/* Payment Method Info */}
-            <Card className="border-border/50 bg-card/30 backdrop-blur-md">
+            {/* <Card className="border-border/50 bg-card/30 backdrop-blur-md">
               <CardContent className="pt-6">
                 <div className="flex items-start gap-3">
                   <Lock className="h-5 w-5 text-accent mt-0.5" />
@@ -272,7 +272,7 @@ function PaymentContent() {
                   </div>
                 </div>
               </CardContent>
-            </Card>
+            </Card> */}
           </div>
 
           {/* Payment Card */}
@@ -296,7 +296,7 @@ function PaymentContent() {
                     disabled={processing}
                     className="w-full bg-accent hover:bg-accent/90 text-accent-foreground font-semibold py-6"
                   >
-                    {processing ? "Processing..." : "Pay Now (Dummy)"}
+                    {processing ? "Processing..." : "Pay Now"}
                   </Button>
 
                   <Link href="/">

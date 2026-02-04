@@ -23,7 +23,7 @@ export default function RootLayout({
         <Analytics />
         <FacebookPixel />
       </body>
-      <script defer src="https://cloud.umami.is/script.js" data-website-id="43b7e192-98db-4ef5-9720-3b8329c84c1f"></script>
+      <script async defer src="https://cloud.umami.is/script.js" data-website-id="43b7e192-98db-4ef5-9720-3b8329c84c1f"></script>
     </html>
   )
 }

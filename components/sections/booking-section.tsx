@@ -1308,7 +1308,7 @@ export function BookingSection({
                   </CardContent>
                 </Card>
 
-                <Card className="border-gray-300 bg-gray-50">
+                {/* <Card className="border-gray-300 bg-gray-50">
                   <CardContent className="pt-6">
                     <div className="flex items-start gap-3">
                       <Lock className="h-5 w-5 text-black mt-0.5" />
@@ -1320,7 +1320,7 @@ export function BookingSection({
                       </div>
                     </div>
                   </CardContent>
-                </Card>
+                </Card> */}
 
                 <div className="space-y-4">
                   <Button
@@ -2013,7 +2013,7 @@ export function BookingSection({
                 </CardContent>
               </Card>
 
-              <Card className="border-gray-300 bg-gray-50">
+              {/* <Card className="border-gray-300 bg-gray-50">
                 <CardContent className="pt-6">
                   <div className="flex items-start gap-3">
                     <Lock className="h-5 w-5 text-black mt-0.5" />
@@ -2025,7 +2025,7 @@ export function BookingSection({
                     </div>
                   </div>
                 </CardContent>
-              </Card>
+              </Card> */}
 
               <div className="space-y-4">
                 <Button
@@ -2033,7 +2033,7 @@ export function BookingSection({
                   disabled={processingPayment}
                   className="w-full font-semibold py-6"
                 >
-                  {processingPayment ? "Processing..." : "Pay Now (Dummy)"}
+                  {processingPayment ? "Processing..." : "Pay Now"}
                 </Button>
                 <Button
                   variant="destructive"
