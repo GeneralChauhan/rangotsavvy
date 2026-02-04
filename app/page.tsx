@@ -561,6 +561,15 @@ export default function LandingPage() {
       {/* Footer */}
       <footer className="border-t border-gray-200 mt-16 lg:mt-16 pb-20 lg:pb-8">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+          <div className="flex justify-center mb-6">
+            <Image
+              src="/gallery/thickandthin.png"
+              alt=""
+              width={120}
+              height={40}
+              className="h-24 w-auto object-contain"
+            />
+          </div>
           {/* Contact Us */}
           <div className="text-center mb-6">
             <h3 className="text-sm font-semibold text-gray-900 mb-1">Contact us</h3>
