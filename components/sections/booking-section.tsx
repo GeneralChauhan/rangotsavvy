@@ -280,7 +280,7 @@ export function BookingSection({
         const { data: byTitle } = await supabase
           .from("events")
           .select("id, title, description, venue, start_date, end_date")
-          .eq("title", "Rangotsav – 4th Holi 2026")
+          .eq("title", "Rangotsav – 4th March, 2026")
           .maybeSingle();
 
         if (byTitle) {
@@ -655,7 +655,7 @@ export function BookingSection({
           couponCode: appliedCoupon?.code || null,
           timeSlot: timeSlot,
           date: eventDate?.date || new Date().toISOString().split('T')[0],
-          eventName: eventDate?.events?.name || eventDate?.events?.title || "Rangotsav – 4th Holi 2026",
+          eventName: eventDate?.events?.name || eventDate?.events?.title || "Rangotsav – 4th March, 2026",
         });
         setCurrentStep("payment");
       }
@@ -676,7 +676,7 @@ export function BookingSection({
         body: JSON.stringify({
           amount: Math.round((bookingData.totalPrice) * 100), // Convert to paise
           redirectUrl: `${window.location.origin}/booking?payment_success=true`,
-          message: `Payment for ${bookingData.eventName || 'Rangotsav – 4th Holi 2026'}`
+          message: `Payment for ${bookingData.eventName || 'Rangotsav – 4th March, 2026'}`
         }),
       });
 
@@ -756,7 +756,7 @@ export function BookingSection({
         date: bookingData.date || new Date().toISOString().split('T')[0],
         time: bookingData.timeSlot?.start_time || '',
         endTime: bookingData.timeSlot?.end_time || '',
-        eventName: bookingData.eventName || "Rangotsav – 4th Holi 2026",
+        eventName: bookingData.eventName || "Rangotsav – 4th March, 2026",
         status: "confirmed",
       };
 
@@ -824,6 +824,28 @@ export function BookingSection({
           } catch (err) {
             console.error("Error incrementing coupon usage:", err);
             // Don't fail the payment if coupon increment fails
+          }
+        }
+
+        // Send confirmation email with QR code (Azure Communication Services)
+        const recipientEmail = bookingData.visitorEmail || (updatedBookings?.[0] as any)?.visitor_email;
+        if (recipientEmail && qrCodeDataUrl) {
+          try {
+            const emailRes = await fetch("/api/send-ticket-email", {
+              method: "POST",
+              headers: { "Content-Type": "application/json" },
+              body: JSON.stringify({
+                to: recipientEmail,
+                visitorName: bookingData.visitorName,
+                qrCodeDataUrl,
+              }),
+            });
+            if (!emailRes.ok) {
+              const err = await emailRes.json().catch(() => ({}));
+              console.warn("Confirmation email could not be sent:", err?.error || emailRes.statusText);
+            }
+          } catch (err) {
+            console.warn("Confirmation email request failed:", err);
           }
         }
 
@@ -913,7 +935,7 @@ export function BookingSection({
               <div className="flex flex-col h-full">
                 {/* Event Title */}
                 <h2 className="text-2xl lg:text-3xl font-bold text-black mb-6 leading-tight">
-                  {eventDetails?.name || eventDetails?.title || "Rangotsav – 4th Holi 2026"}
+                  {eventDetails?.name || eventDetails?.title || "Rangotsav – 4th March, 2026"}
                 </h2>
 
                 {/* Event Details */}

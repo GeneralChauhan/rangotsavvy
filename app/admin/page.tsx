@@ -98,7 +98,7 @@ export default function AdminDashboard() {
         const { data: byTitle } = await supabase
           .from("events")
           .select("id")
-          .eq("title", "Rangotsav – 4th Holi 2026")
+          .eq("title", "Rangotsav – 4th March, 2026")
           .maybeSingle()
         const { data: firstEvent } = await supabase.from("events").select("id").limit(1).single()
         const eventData = byTitle ?? firstEvent

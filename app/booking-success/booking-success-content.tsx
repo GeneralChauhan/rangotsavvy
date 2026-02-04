@@ -74,7 +74,7 @@ export function BookingSuccessContent() {
                   date: eventDate?.date || new Date().toISOString().split('T')[0],
                   time: timeSlot?.start_time || '',
                   endTime: timeSlot?.end_time || '',
-                  eventName: eventDate?.events?.name || eventDate?.events?.title || "Rangotsav – 4th Holi 2026",
+                  eventName: eventDate?.events?.name || eventDate?.events?.title || "Rangotsav – 4th March, 2026",
                   status: booking.status || "confirmed",
                 }
                 console.log("Generating QR code with data:", qrData)
@@ -186,7 +186,7 @@ export function BookingSuccessContent() {
               date: new Date().toISOString().split('T')[0],
               time: '',
               endTime: '',
-              eventName: "Rangotsav – 4th Holi 2026",
+              eventName: "Rangotsav – 4th March, 2026",
               status: "confirmed",
             }
             const qrCodeDataUrl = await generateBookingQRCode(qrData)

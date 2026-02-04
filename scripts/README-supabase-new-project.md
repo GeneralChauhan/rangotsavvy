@@ -18,7 +18,7 @@ Use this to create a **new** Supabase project with the same schema and Holi 2026
 5. Confirm there are no errors. The script will:
    - Create tables: `events`, `event_dates`, `time_slots`, `skus`, `inventory`, `bookings`, `coupons`
    - Add QR code and coupon-related columns on `bookings`
-   - Seed **Rangotsav – 4th Holi 2026** (one event, one date, one time slot, 3 SKUs, inventory)
+   - Seed **Rangotsav – 4th March, 2026** (one event, one date, one time slot, 3 SKUs, inventory)
 
 ## 3. Connect the app
 

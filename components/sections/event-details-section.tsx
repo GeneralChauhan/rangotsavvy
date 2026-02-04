@@ -22,7 +22,7 @@ export function EventDetailsSection({ onBookTickets }: EventDetailsSectionProps)
         const { data: byTitle } = await supabase
           .from("events")
           .select("*")
-          .eq("title", "Rangotsav – 4th Holi 2026")
+          .eq("title", "Rangotsav – 4th March, 2026")
           .maybeSingle();
         if (byTitle) eventData = byTitle;
 
@@ -71,7 +71,7 @@ export function EventDetailsSection({ onBookTickets }: EventDetailsSectionProps)
   }
 
   // Get event title/name
-  const eventTitle = event?.title || event?.name || "Rangotsav – 4th Holi 2026";
+  const eventTitle = event?.title || event?.name || "Rangotsav – 4th March, 2026";
 
   return (
     <div className="min-h-screen">

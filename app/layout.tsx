@@ -5,9 +5,9 @@ import { FacebookPixel } from "@/components/facebook-pixel"
 import "./globals.css"
 
 export const metadata: Metadata = {
-  title: "Rangotsav – 4th Holi 2026 | Book Your Tickets",
+  title: "Rangotsav – 4th March, 2026 | Book Your Tickets",
   description:
-    "Premium, ticketed Holi experience. Complementary drink and snacks, DJ, band, dhol, organic colours, rain dance, food stalls. Book your tickets for 4th Holi 2026.",
+    "Premium, ticketed Holi experience. Complementary drink and snacks, DJ, band, dhol, organic colours, rain dance, food stalls. Book your tickets for 4th March, 2026.",
   generator: "getout.buzz",
 }
 

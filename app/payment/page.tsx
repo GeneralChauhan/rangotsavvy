@@ -97,7 +97,7 @@ function PaymentContent() {
           timeSlot: timeSlot,
           sku: booking.skus as any,
           date: eventDate?.date || new Date().toISOString().split('T')[0],
-          eventName: eventDate?.events?.name || eventDate?.events?.title || "Rangotsav – 4th Holi 2026",
+          eventName: eventDate?.events?.name || eventDate?.events?.title || "Rangotsav – 4th March, 2026",
         })
       } catch (err) {
         console.error("Unexpected error:", err)
@@ -134,7 +134,7 @@ function PaymentContent() {
           date: bookingData.date || new Date().toISOString().split('T')[0],
           time: bookingData.timeSlot?.start_time || '',
           endTime: bookingData.timeSlot?.end_time || '',
-          eventName: bookingData.eventName || "Rangotsav – 4th Holi 2026",
+          eventName: bookingData.eventName || "Rangotsav – 4th March, 2026",
           status: "confirmed",
         }
 

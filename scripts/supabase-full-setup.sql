@@ -144,12 +144,12 @@ CREATE TRIGGER update_coupons_updated_at
   EXECUTE FUNCTION update_updated_at_column();
 
 -- -----------------------------------------------------------------------------
--- 4. SEED: Rangotsav – 4th Holi 2026 (one event, one date, one slot, 3 SKUs)
+-- 4. SEED: Rangotsav – 4th March, 2026 (one event, one date, one slot, 3 SKUs)
 -- -----------------------------------------------------------------------------
 
 INSERT INTO public.events (title, description, venue, start_date, end_date)
 VALUES (
-  'Rangotsav – 4th Holi 2026',
+  'Rangotsav – 4th March, 2026',
   'Premium, ticketed Holi experience. 1 Complementary (drink + Snacks), DJ, Band, Dhol, Organic Colours, Rain Dance, Food Stalls.',
   'Palladium Mall, Ahmedabad',
   '2026-03-14',
@@ -159,7 +159,7 @@ VALUES (
 INSERT INTO public.event_dates (event_id, date, is_available)
 SELECT id, '2026-03-14'::DATE, true
 FROM public.events
-WHERE title = 'Rangotsav – 4th Holi 2026'
+WHERE title = 'Rangotsav – 4th March, 2026'
 LIMIT 1
 ON CONFLICT (event_id, date) DO UPDATE SET is_available = true;
 
@@ -167,16 +167,16 @@ INSERT INTO public.time_slots (event_date_id, start_time, end_time, max_capacity
 SELECT ed.id, '10:00'::TIME, '18:00'::TIME, 500
 FROM public.event_dates ed
 JOIN public.events e ON e.id = ed.event_id
-WHERE e.title = 'Rangotsav – 4th Holi 2026' AND ed.date = '2026-03-14'
+WHERE e.title = 'Rangotsav – 4th March, 2026' AND ed.date = '2026-03-14'
 LIMIT 1
 ON CONFLICT (event_date_id, start_time) DO NOTHING;
 
 INSERT INTO public.skus (event_id, name, description, base_price, category, is_active)
-SELECT id, 'Stag Entry', 'Early Bird – Single entry', 1499.00, 'stag', true FROM public.events WHERE title = 'Rangotsav – 4th Holi 2026' LIMIT 1;
+SELECT id, 'Stag Entry', 'Early Bird – Single entry', 1499.00, 'stag', true FROM public.events WHERE title = 'Rangotsav – 4th March, 2026' LIMIT 1;
 INSERT INTO public.skus (event_id, name, description, base_price, category, is_active)
-SELECT id, 'Couple Entry', 'Early Bird – Couple entry', 2599.00, 'couple', true FROM public.events WHERE title = 'Rangotsav – 4th Holi 2026' LIMIT 1;
+SELECT id, 'Couple Entry', 'Early Bird – Couple entry', 2599.00, 'couple', true FROM public.events WHERE title = 'Rangotsav – 4th March, 2026' LIMIT 1;
 INSERT INTO public.skus (event_id, name, description, base_price, category, is_active)
-SELECT id, 'Kid (3–7 years)', 'Early Bird – Age 3 to 7. Above 7 years full ticket applies.', 399.00, 'kid', true FROM public.events WHERE title = 'Rangotsav – 4th Holi 2026' LIMIT 1;
+SELECT id, 'Kid (3–7 years)', 'Early Bird – Age 3 to 7. Above 7 years full ticket applies.', 399.00, 'kid', true FROM public.events WHERE title = 'Rangotsav – 4th March, 2026' LIMIT 1;
 
 INSERT INTO public.inventory (time_slot_id, sku_id, total_quantity, available_quantity)
 SELECT ts.id, s.id, 200, 200
@@ -184,7 +184,7 @@ FROM public.time_slots ts
 JOIN public.event_dates ed ON ed.id = ts.event_date_id
 JOIN public.events e ON e.id = ed.event_id
 CROSS JOIN public.skus s
-WHERE e.title = 'Rangotsav – 4th Holi 2026' AND s.event_id = e.id
+WHERE e.title = 'Rangotsav – 4th March, 2026' AND s.event_id = e.id
 ON CONFLICT (time_slot_id, sku_id) DO NOTHING;
 
 -- -----------------------------------------------------------------------------
