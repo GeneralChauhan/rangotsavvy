@@ -28,7 +28,8 @@ function parseDataUrl(dataUrl: string): { contentType: string; base64: string } 
 }
 
 /**
- * Festive ticket-style email HTML. Uses Rangotsav colors (pink, yellow, green).
+ * Email HTML aligned with the website design: white background, gray scale,
+ * Helvetica, bold headings, gray-200 borders, rounded-lg card for the ticket.
  */
 function buildTicketEmailHtml(
   visitorName?: string,
@@ -36,50 +37,53 @@ function buildTicketEmailHtml(
   isComposite: boolean = false
 ): string {
   const imgWidth = isComposite ? "400" : "240";
-  const imgHeight = isComposite ? "560" : "240"; // composite is portrait-ish
+  const imgHeight = isComposite ? "560" : "240";
   return `
 <!DOCTYPE html>
 <html>
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Here's your ticket</title>
 </head>
-<body style="margin: 0; padding: 0; background: linear-gradient(180deg, #fdf2f8 0%, #fce7f3 50%, #fbcfe8 100%); font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;">
-  <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="max-width: 520px; margin: 0 auto; padding: 32px 16px;">
+<body style="margin: 0; padding: 0; background-color: #ffffff; font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;">
+  <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="max-width: 560px; margin: 0 auto; background-color: #ffffff;">
     <tr>
-      <td align="center" style="padding: 24px 0 16px;">
-        <h1 style="margin: 0; font-size: 28px; font-weight: 700; color: #831843; letter-spacing: 0.02em; text-shadow: 0 1px 2px rgba(0,0,0,0.06);">Here's your ticket</h1>
-      </td>
-    </tr>
-    <tr>
-      <td style="padding: 8px 0 24px; text-align: center;">
-        <p style="margin: 0; font-size: 16px; color: #4a5568; line-height: 1.5;">
-          Hi${visitorName ? ` ${visitorName}` : ""}, your booking is confirmed. Show this at the entrance.
+      <td style="padding: 32px 24px 24px;">
+        <h1 style="margin: 0 0 8px 0; font-size: 28px; font-weight: 700; color: #111827; letter-spacing: -0.025em; line-height: 1.2;">
+          Here's your ticket
+        </h1>
+        <p style="margin: 0; font-size: 16px; color: #4b5563; line-height: 1.5;">
+          Hi${visitorName ? ` ${visitorName}` : ""}, your booking is confirmed. Show this at the venue entrance.
         </p>
       </td>
     </tr>
     <tr>
-      <td align="center" style="padding: 16px 0;">
-        <table role="presentation" align="center" cellpadding="0" cellspacing="0" style="background: #fef3c7; border-radius: 16px; padding: 20px; box-shadow: 0 4px 24px rgba(131,24,67,0.15); border: 2px solid #fcd34d;">
+      <td style="padding: 0 24px 24px;">
+        <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="background-color: #f9fafb; border: 1px solid #e5e7eb; border-radius: 12px; padding: 20px;">
           <tr>
             <td align="center">
-              <img src="cid:${imageContentId}" alt="Your ticket" width="${imgWidth}" height="${imgHeight}" style="display: block; max-width: 100%; height: auto; border-radius: 12px;" />
+              <img src="cid:${imageContentId}" alt="Your ticket" width="${imgWidth}" height="${imgHeight}" style="display: block; max-width: 100%; height: auto; border-radius: 8px;" />
             </td>
           </tr>
         </table>
       </td>
     </tr>
     <tr>
-      <td align="center" style="padding: 24px 16px;">
-        <p style="margin: 0; font-size: 14px; color: #6b7280;">
-          <strong style="color: #15803d;">Rangotsav – 4th Holi 2026</strong><br/>
+      <td style="padding: 0 24px 24px; border-top: 1px solid #e5e7eb;">
+        <p style="margin: 0; font-size: 14px; color: #111827; font-weight: 600;">
+          Rangotsav – 4th March, 2026
+        </p>
+        <p style="margin: 6px 0 0 0; font-size: 14px; color: #6b7280;">
           White Feather, Electronic City, Bangalore
         </p>
       </td>
     </tr>
     <tr>
-      <td align="center" style="padding: 16px; border-top: 1px solid #f9a8d4;">
-        <p style="margin: 0; font-size: 12px; color: #9ca3af;">See you there!</p>
+      <td style="padding: 24px 24px 32px;">
+        <p style="margin: 0; font-size: 12px; color: #9ca3af;">
+          See you there.
+        </p>
       </td>
     </tr>
   </table>

@@ -561,6 +561,30 @@ export default function LandingPage() {
       {/* Footer */}
       <footer className="border-t border-gray-200 mt-16 lg:mt-16 pb-20 lg:pb-8">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+          {/* Contact Us */}
+          <div className="text-center mb-6">
+            <h3 className="text-sm font-semibold text-gray-900 mb-1">Contact us</h3>
+            <p className="text-sm text-gray-500 mb-3">
+              Feel free to reach out to us using the provided contact details.
+            </p>
+            <div className="flex flex-col sm:flex-row items-center justify-center gap-2 sm:gap-4 text-sm text-gray-600">
+              <a
+                href="tel:+919035550824"
+                className="hover:text-gray-900 underline-offset-2 hover:underline"
+                data-umami-event="footer-call"
+              >
+                +91 90355 50824
+              </a>
+              <span className="hidden sm:inline text-gray-400">·</span>
+              <a
+                href="mailto:hello@soleadogroup.com"
+                className="hover:text-gray-900 underline-offset-2 hover:underline"
+                data-umami-event="footer-email"
+              >
+                hello@soleadogroup.com
+              </a>
+            </div>
+          </div>
           <div className="flex flex-col sm:flex-row items-center justify-center gap-2 sm:gap-4 text-sm text-gray-500 flex-wrap">
             <Link
               href="/privacy"
