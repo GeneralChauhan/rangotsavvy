@@ -180,7 +180,7 @@ export default function LandingPage() {
                 <MapPin className="h-5 w-5 text-gray-500 mt-0.5 flex-shrink-0" />
                 <div>
                   <p className="font-semibold text-gray-900">Location</p>
-                  <p className="text-gray-600">{event?.venue || "Palladium Mall, Ahmedabad"}</p>
+                  <p className="text-gray-600">{event?.venue || "White Feather, Electronic City, Bangalore"}</p>
                   <p className="text-sm text-gray-500 mt-1">Ahmedabad, Gujarat</p>
                 </div>
               </div>
@@ -424,7 +424,7 @@ export default function LandingPage() {
                   </div>
                   <div className="flex items-start gap-3">
                     <MapPin className="h-5 w-5 text-black mt-0.5 flex-shrink-0" />
-                    <p className="text-base text-black">{event?.venue || "Palladium Mall, Ahmedabad"}</p>
+                    <p className="text-base text-black">{event?.venue || "White Feather, Electronic City, Bangalore"}</p>
                   </div>
                 </div>
 

@@ -1,7 +1,8 @@
 import { type NextRequest, NextResponse } from "next/server";
 import { EmailClient } from "@azure/communication-email";
+import { compositeQROntoTicketBackground } from "@/lib/utils/ticket-image";
 
-const INLINE_QR_CONTENT_ID = "qrcode";
+const INLINE_TICKET_CONTENT_ID = "ticket";
 
 /**
  * Azure EmailClient expects connection string format:
@@ -24,6 +25,67 @@ function parseDataUrl(dataUrl: string): { contentType: string; base64: string } 
   const match = dataUrl.match(/^data:([^;]+);base64,(.+)$/);
   if (!match) return null;
   return { contentType: match[1].trim(), base64: match[2].trim() };
+}
+
+/**
+ * Festive ticket-style email HTML. Uses Rangotsav colors (pink, yellow, green).
+ */
+function buildTicketEmailHtml(
+  visitorName?: string,
+  imageContentId: string = "ticket",
+  isComposite: boolean = false
+): string {
+  const imgWidth = isComposite ? "400" : "240";
+  const imgHeight = isComposite ? "560" : "240"; // composite is portrait-ish
+  return `
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body style="margin: 0; padding: 0; background: linear-gradient(180deg, #fdf2f8 0%, #fce7f3 50%, #fbcfe8 100%); font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;">
+  <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="max-width: 520px; margin: 0 auto; padding: 32px 16px;">
+    <tr>
+      <td align="center" style="padding: 24px 0 16px;">
+        <h1 style="margin: 0; font-size: 28px; font-weight: 700; color: #831843; letter-spacing: 0.02em; text-shadow: 0 1px 2px rgba(0,0,0,0.06);">Here's your ticket</h1>
+      </td>
+    </tr>
+    <tr>
+      <td style="padding: 8px 0 24px; text-align: center;">
+        <p style="margin: 0; font-size: 16px; color: #4a5568; line-height: 1.5;">
+          Hi${visitorName ? ` ${visitorName}` : ""}, your booking is confirmed. Show this at the entrance.
+        </p>
+      </td>
+    </tr>
+    <tr>
+      <td align="center" style="padding: 16px 0;">
+        <table role="presentation" align="center" cellpadding="0" cellspacing="0" style="background: #fef3c7; border-radius: 16px; padding: 20px; box-shadow: 0 4px 24px rgba(131,24,67,0.15); border: 2px solid #fcd34d;">
+          <tr>
+            <td align="center">
+              <img src="cid:${imageContentId}" alt="Your ticket" width="${imgWidth}" height="${imgHeight}" style="display: block; max-width: 100%; height: auto; border-radius: 12px;" />
+            </td>
+          </tr>
+        </table>
+      </td>
+    </tr>
+    <tr>
+      <td align="center" style="padding: 24px 16px;">
+        <p style="margin: 0; font-size: 14px; color: #6b7280;">
+          <strong style="color: #15803d;">Rangotsav – 4th Holi 2026</strong><br/>
+          White Feather, Electronic City, Bangalore
+        </p>
+      </td>
+    </tr>
+    <tr>
+      <td align="center" style="padding: 16px; border-top: 1px solid #f9a8d4;">
+        <p style="margin: 0; font-size: 12px; color: #9ca3af;">See you there!</p>
+      </td>
+    </tr>
+  </table>
+</body>
+</html>
+`.trim();
 }
 
 export async function POST(request: NextRequest) {
@@ -73,21 +135,15 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    const htmlBody = `
-<!DOCTYPE html>
-<html>
-<head><meta charset="utf-8"></head>
-<body style="font-family: sans-serif; max-width: 480px; margin: 0 auto; padding: 24px;">
-  <h1 style="font-size: 1.5rem; color: #111;">Here's your ticket.</h1>
-  <p style="color: #444;">Hi${visitorName ? ` ${visitorName}` : ""},</p>
-  <p style="color: #444;">Please show this QR code at the venue entrance.</p>
-  <p style="margin: 24px 0;">
-    <img src="cid:${INLINE_QR_CONTENT_ID}" alt="Booking QR Code" width="240" height="240" style="display: block; margin: 0 auto;" />
-  </p>
-  <p style="color: #666; font-size: 0.875rem;">See you at Rangotsav – 4th March, 2026!</p>
-</body>
-</html>
-`.trim();
+    // Optional: composite QR onto ticket background for a single ticket image
+    const composite = await compositeQROntoTicketBackground(parsed.base64);
+    const useComposite = !!composite;
+    const imageContentId = INLINE_TICKET_CONTENT_ID;
+    const imageContentType = useComposite ? composite.contentType : parsed.contentType;
+    const imageBase64 = useComposite ? composite.buffer.toString("base64") : parsed.base64;
+    const imageName = useComposite ? "ticket.png" : "ticket-qr.png";
+
+    const htmlBody = buildTicketEmailHtml(visitorName, imageContentId, useComposite);
 
     const client = new EmailClient(normalizeConnectionString(connectionString));
 
@@ -102,10 +158,10 @@ export async function POST(request: NextRequest) {
       },
       attachments: [
         {
-          name: "ticket-qr.png",
-          contentType: parsed.contentType,
-          contentInBase64: parsed.base64,
-          contentId: INLINE_QR_CONTENT_ID,
+          name: imageName,
+          contentType: imageContentType,
+          contentInBase64: imageBase64,
+          contentId: imageContentId,
         },
       ],
     };

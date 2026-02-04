@@ -151,7 +151,7 @@ INSERT INTO public.events (title, description, venue, start_date, end_date)
 VALUES (
   'Rangotsav – 4th March, 2026',
   'Premium, ticketed Holi experience. 1 Complementary (drink + Snacks), DJ, Band, Dhol, Organic Colours, Rain Dance, Food Stalls.',
-  'Palladium Mall, Ahmedabad',
+  'White Feather, Electronic City, Bangalore',
   '2026-03-14',
   '2026-03-14'
 );
