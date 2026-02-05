@@ -287,7 +287,7 @@ Whether you're coming with your closest crew or planning a big group outing, Ran
                   <Ticket className="h-5 w-5 text-gray-500 mt-0.5 flex-shrink-0" />
                   <div>
                     <p className="text-xs text-gray-500 mb-1">Tickets Needed For</p>
-                    <p className="font-semibold text-gray-900">3 yrs & above</p>
+                    <p className="font-semibold text-gray-900">21 yrs & above</p>
                   </div>
                 </div>
               </div>
@@ -334,7 +334,7 @@ Whether you're coming with your closest crew or planning a big group outing, Ran
                   {[
                     {
                       q: "Is there an age restriction for the event?",
-                      a: "No, there is no age restriction but tickets are required for children aged 3 and above.",
+                      a: "Yes, entry is allowed for individuals aged 21 and above.",
                     },
                     {
                       q: "Is there parking available?",
@@ -350,7 +350,7 @@ Whether you're coming with your closest crew or planning a big group outing, Ran
                     },
                     {
                       q: "Will food & beverages be available at the venue?",
-                      a: "No, food & beverages will not be available at the venue.",
+                      a: "Yes, food & beverages will be available at the venue for purchase.",
                     },
                     {
                       q: "Is re-entry to the venue allowed?",
@@ -358,7 +358,7 @@ Whether you're coming with your closest crew or planning a big group outing, Ran
                     },
                     {
                       q: "Is there a designated smoking area?",
-                      a: "Yes, a designated smoking area will be available at the venue.",
+                      a: "No, smoking is not allowed at the venue.",
                     },
                   ].map((faq, i) => (
                     <div key={i} className="py-4 border-b border-gray-200 last:border-b-0">
@@ -391,15 +391,13 @@ Whether you're coming with your closest crew or planning a big group outing, Ran
                     <li>• Tickets once sold cannot be exchanged or refunded. An event cannot be cancelled due to bad weather conditions.</li>
                     <li>• Tickets are valid only for the show date mentioned on the ticket. Tickets cannot be redeemed on any other date.</li>
                     <li>• No refund on purchased tickets is possible, even in case of any rescheduling.</li>
-                    <li>• There might be a waiting time at the venue. Entry will be on a first-come, first-serve basis.</li>
-                    <li>• The maximum experience duration is 6 hour, after which guests will be asked to exit for the next batch.</li>
+                    <li>• There might be a waiting time at the venue.</li>
+                    <li>• The maximum experience duration is 6 hours, after which guests will be asked to exit.</li>
                     <li>• Instagram or any other freebie offers can be collected on the show day only.</li>
-                    <li>• Please maintain silence and do not use flashlights during the show. Violators may be asked to leave without refund.</li>
                     <li>• Security procedures, including frisking, remain the right of the management.</li>
                     <li>• No dangerous or potentially hazardous objects including but not limited to weapons, knives, guns, fireworks, helmets, laser devices, bottles, musical instruments will be allowed in the venue and may be ejected. Offenders may be reported to the Police.</li>
-                    <li>• No liability for injuries or damages to any person or property by sponsors/performers/organizers. All claims subject to Mumbai courts only.</li>
-                    <li>• No entry for individuals in an inebriated state.</li>
-                    <li>• Organizers reserve the right to deny late entry.</li>
+                    <li>• No liability for injuries or damages to any person or property by sponsors/performers/organizers. All claims subject to Karnataka courts only.</li>
+                    <li>• Organizers reserve the right to deny entry.</li>
                     <li>• Venue rules apply.</li>
                   </ul>
                 </div>
@@ -441,7 +439,7 @@ Whether you're coming with your closest crew or planning a big group outing, Ran
                   <div>
                     <p className="text-sm text-gray-500 mb-1">Starts from</p>
                     <p className="text-3xl font-bold text-black">
-                      {startingPrice != null ? `₹${Math.round(startingPrice).toLocaleString()}` : "₹399"}
+                      {startingPrice != null ? `₹${Math.round(startingPrice).toLocaleString()}` : "1499"}
                     </p>
                   </div>
 
@@ -494,7 +492,7 @@ Whether you're coming with your closest crew or planning a big group outing, Ran
                 <Ticket className="h-5 w-5 text-gray-500 mt-0.5 flex-shrink-0" />
                 <div className="flex-1">
                   <p className="text-xs text-gray-500 mb-1">Tickets Needed For</p>
-                  <p className="font-semibold text-gray-900">3 yrs & above</p>
+                  <p className="font-semibold text-gray-900">21 yrs & above</p>
                 </div>
               </div>
               <div className="flex items-start gap-3">
@@ -545,7 +543,7 @@ Whether you're coming with your closest crew or planning a big group outing, Ran
             <div>
               <p className="text-sm text-gray-500 mb-1">Starts from</p>
               <p className="text-3xl font-bold text-black">
-                {startingPrice != null ? `₹${Math.round(startingPrice).toLocaleString()}` : "₹399"}
+                {startingPrice != null ? `₹${Math.round(startingPrice).toLocaleString()}` : "1499"}
               </p>
             </div>
 
