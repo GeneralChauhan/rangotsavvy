@@ -565,7 +565,7 @@ Whether you're coming with your closest crew or planning a big group outing, Ran
       {/* Footer */}
       <footer className="border-t border-gray-200 mt-16 lg:mt-16 pb-20 lg:pb-8">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-          <div className="flex justify-center mb-6">
+          <div className="flex justify-center mb-6" onClick={() => window.open("https://www.thickandthin.media/", "_blank")}>
             <Image
               src="/gallery/thickandthin.png"
               alt=""
