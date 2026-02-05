@@ -43,7 +43,7 @@ export default function LandingPage() {
         }
 
         if (eventData) {
-          setEvent(eventData);
+          setEvent("");
 
           // Fetch starting price from SKUs
           const { data: skuData } = await supabase
@@ -69,7 +69,7 @@ export default function LandingPage() {
             .limit(1);
 
           if (dates) {
-            setEventDates(dates);
+            setEventDates([]);
           }
         }
       } catch (error) {
@@ -91,8 +91,12 @@ export default function LandingPage() {
   }
 
   const eventTitle = event?.title || event?.name || "Rangotsav – 4th March, 2026";
-  const eventDescription = event?.description || 
-    "Premium, ticketed Holi experience. One complementary drink and snacks, DJ, live band, dhol, organic colours, rain dance, and food stalls. Join us for 4th March, 2026.";
+  const eventDescription = event?.description ||
+    `Get ready to celebrate Holi like never before at Rangotsav 2026, Bangalore's most vibrant and curated Holi music festival.
+
+This March 4th, join us at White Feather, Electronic City, for a full-day celebration of music, colours, and great vibes. Dance to DJs and Live Band Performances, move to energetic Dhol Beats, play with Organic Colours, splash around in the Rain Dance Zone, and grab a bite from the Food Stalls.
+
+Whether you're coming with your closest crew or planning a big group outing, Rangotsav is the perfect place to make memories, click colourful pictures, and enjoy Holi the way it's meant to be celebrated, loud, bright, and full of life.`;
 
   const formatDate = (dateString: string) => {
     const date = new Date(dateString);
@@ -180,8 +184,8 @@ export default function LandingPage() {
                 <MapPin className="h-5 w-5 text-gray-500 mt-0.5 flex-shrink-0" />
                 <div>
                   <p className="font-semibold text-gray-900">Location</p>
-                  <p className="text-gray-600">{event?.venue || "White Feather, Electronic City, Bangalore"}</p>
-                  <p className="text-sm text-gray-500 mt-1">Ahmedabad, Gujarat</p>
+                  <p className="text-gray-600">{event?.venue || "White Feather, Electronic City"}</p>
+                  <p className="text-sm text-gray-500 mt-1">Bangalore, Karnataka</p>
                 </div>
               </div>
             </div>
@@ -239,10 +243,11 @@ export default function LandingPage() {
               <h2 className="text-2xl font-bold text-gray-900 mb-4">What to expect</h2>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 {[
-                  { title: "Complementary refreshments", description: "One drink and snacks included with your ticket" },
-                  { title: "Live entertainment", description: "DJ, band, and dhol for the full festival vibe" },
-                  { title: "Organic colours & rain dance", description: "Safe, eco-friendly colours and rain dance zone" },
-                  { title: "Food stalls", description: "Food stalls on site for the day" },
+                  { title: "Complimentary Refreshments", description: "Enjoy 1 complimentary drink and snack, on us" },
+                  { title: "Live Music", description: "DJ, live band & dhol for non-stop Holi madness" },
+                  { title: "Organic Colours", description: "Play Holi with safe, organic colours all day" },
+                  { title: "Rain Dance", description: "Splash, dance, repeat" },
+                  { title: "Food Stalls", description: "Tired of having the best time? Take a break and refuel at our food stalls" },
                 ].map((zone, i) => (
                   <div key={i} className="p-4 border border-gray-200 rounded-lg">
                     <h3 className="font-semibold text-gray-900 mb-2">{zone.title}</h3>
@@ -293,12 +298,12 @@ export default function LandingPage() {
             <div className="border-t border-gray-200 pt-6 w-screen lg:w-auto -ml-4 sm:-ml-6 lg:ml-0 px-4 sm:px-6 lg:px-0">
               <h2 className="text-2xl font-bold text-gray-900 mb-4">Venue</h2>
               <div className="bg-white border border-gray-200 rounded-lg p-6">
-                <h3 className="text-lg font-semibold text-gray-900 mb-2">Palladium Mall</h3>
+                <h3 className="text-lg font-semibold text-gray-900 mb-2">White Feather, Electronic City</h3>
                 <p className="text-sm text-gray-600 mb-4">
-                  Sarkhej - Gandhinagar Hwy, Thaltej, Ahmedabad, Gujarat 380054, India
+                NICE Tollgate, 40/41-1, Hobli-Begur, PESU ECC Main Rd, opposite metro wholesale &, Electronic City Phase I, Electronic City, Beratena Agrahara, Bengaluru,
                 </p>
                 <a
-                  href="https://maps.google.com/?q=Palladium+Mall+Sarkhej+Gandhinagar+Hwy+Thaltej+Ahmedabad"
+                  href="https://www.google.com/maps?um=1&ie=UTF-8&fb=1&gl=in&sa=X&geocode=KaHciGqibK47MRRDarACFk0f&daddr=NICE+Tollgate,+40/41-1,+Hobli-Begur,+PESU+ECC+Main+Rd,+opposite+metro+wholesale+%26,+Electronic+City+Phase+I,+Electronic+City,+Beratena+Agrahara,+Bengaluru,+Karnataka+560100"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="inline-flex items-center gap-2 bg-black hover:bg-black/90 text-white font-bold text-sm uppercase tracking-wide px-6 py-3 rounded-lg transition-all active:scale-95 whitespace-nowrap"
