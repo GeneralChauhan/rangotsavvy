@@ -171,7 +171,7 @@ Whether you're coming with your closest crew or planning a big group outing, Ran
             </div>
 
             {/* Event Details */}
-            <div className="border-t border-gray-200 pt-6 space-y-4 w-screen lg:w-auto -ml-4 sm:-ml-6 lg:ml-0 px-4 sm:px-6 lg:px-0">
+            {/* <div className="border-t border-gray-200 pt-6 space-y-4 w-screen lg:w-auto -ml-4 sm:-ml-6 lg:ml-0 px-4 sm:px-6 lg:px-0">
               <div className="flex items-start gap-4">
                 <Calendar className="h-5 w-5 text-gray-500 mt-0.5 flex-shrink-0" />
                 <div>
@@ -190,7 +190,6 @@ Whether you're coming with your closest crew or planning a big group outing, Ran
               </div>
             </div>
 
-            {/* Ticketing Manifest */}
             <div className="border-t border-gray-200 pt-6 w-screen lg:w-auto -ml-4 sm:-ml-6 lg:ml-0 px-4 sm:px-6 lg:px-0">
               <h2 className="text-2xl font-bold text-gray-900 mb-3 tracking-tight">
                 Ticketing
@@ -226,7 +225,7 @@ Whether you're coming with your closest crew or planning a big group outing, Ran
                   </p>
                 </div>
               </div>
-            </div>
+            </div> */}
 
             {/* About This Event */}
             <div className="border-t border-gray-200 pt-6 w-screen lg:w-auto -ml-4 sm:-ml-6 lg:ml-0 px-4 sm:px-6 lg:px-0">
