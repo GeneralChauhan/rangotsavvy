@@ -175,7 +175,7 @@ export function ScannerInterface({
           <CardContent className="p-4">
             <Select value={selectedEvent} onValueChange={setSelectedEvent}>
               <SelectTrigger>
-                <SelectValue placeholder="Select an event" />
+                <SelectValue placeholder="Select the event" />
               </SelectTrigger>
               <SelectContent>
                 {events.map((event) => (
@@ -240,7 +240,7 @@ export function ScannerInterface({
                   <Camera className="mr-2 h-5 w-5" />
                   Start Scanning
                 </Button>
-                {!selectedEvent && <p className="text-sm text-muted-foreground">Please select an event first</p>}
+                {!selectedEvent && <p className="text-sm text-muted-foreground">Please select the event first</p>}
               </div>
             )}
           </CardContent>

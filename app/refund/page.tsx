@@ -60,7 +60,7 @@ export default function RefundPolicyPage() {
                 accordance with the conditions outlined below.
               </li>
               <li>
-                Certain components of an event (such as venue bookings, artist
+                Certain components of the event (such as venue bookings, artist
                 advances, logistics, permissions, marketing, and third-party
                 services) are prepaid and non-recoverable. Hence, refunds are
                 limited.
@@ -82,7 +82,7 @@ export default function RefundPolicyPage() {
                   Event Cancellation by Soleado
                 </h3>
                 <p className="text-base leading-relaxed">
-                  If an event is cancelled entirely by Soleado and is not
+                  If the event is cancelled entirely by Soleado and is not
                   rescheduled, eligible ticket holders will be entitled to a
                   refund of the ticket amount paid, excluding convenience fees,
                   platform fees, taxes, or payment gateway charges.
@@ -94,7 +94,7 @@ export default function RefundPolicyPage() {
                   Event Rescheduling
                 </h3>
                 <p className="text-base leading-relaxed">
-                  If an event is rescheduled, tickets will remain valid for the
+                  If the event is rescheduled, tickets will remain valid for the
                   new date. Refunds will be issued only if explicitly announced
                   by Soleado for that event.
                 </p>

@@ -63,7 +63,7 @@ export default function TermsPage() {
               1. About Soleado & Our Services
             </h2>
             <p className="text-base leading-relaxed mb-4">
-              Soleado Elements Pvt. Ltd. is an event management and
+              Soleado Elements Pvt. Ltd. is the event management and
               experiential entertainment company engaged in:
             </p>
             <ul className="list-disc list-inside space-y-1.5 text-base leading-relaxed text-gray-700 ml-1 mb-4">
@@ -79,7 +79,7 @@ export default function TermsPage() {
               <li>Customer support related to event participation</li>
             </ul>
             <p className="text-base leading-relaxed">
-              Soleado acts as an event organiser and coordinator and does not
+              Soleado acts as the event organiser and coordinator and does not
               guarantee specific outcomes, experiences, or satisfaction levels,
               which may vary based on subjective preferences and external
               factors.
@@ -187,7 +187,7 @@ export default function TermsPage() {
               5. Photography, Recording & Media Rights
             </h2>
             <p className="text-base leading-relaxed">
-              By attending an event, you grant Soleado the irrevocable right
+              By attending the event, you grant Soleado the irrevocable right
               to photograph, record, and use your likeness, voice, or
               appearance in any media for promotional, commercial, or
               archival purposes without compensation.

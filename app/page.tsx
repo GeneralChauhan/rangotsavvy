@@ -388,14 +388,13 @@ Whether you're coming with your closest crew or planning a big group outing, Ran
                 <div className="bg-white border border-gray-200 rounded-lg p-6">
                   <ul className="space-y-3 text-sm text-gray-700">
                     <li>• Please carry a valid ID proof along with you.</li>
-                    <li>• Tickets once sold cannot be exchanged or refunded. An event cannot be cancelled due to bad weather conditions.</li>
+                    <li>• Tickets once sold cannot be exchanged or refunded. The event cannot be cancelled due to bad weather conditions.</li>
                     <li>• Tickets are valid only for the show date mentioned on the ticket. Tickets cannot be redeemed on any other date.</li>
                     <li>• No refund on purchased tickets is possible, even in case of any rescheduling.</li>
                     <li>• There might be a waiting time at the venue.</li>
                     <li>• The maximum experience duration is 6 hours, after which guests will be asked to exit.</li>
-                    <li>• Instagram or any other freebie offers can be collected on the show day only.</li>
                     <li>• Security procedures, including frisking, remain the right of the management.</li>
-                    <li>• No dangerous or potentially hazardous objects including but not limited to weapons, knives, guns, fireworks, helmets, laser devices, bottles, musical instruments will be allowed in the venue and may be ejected. Offenders may be reported to the Police.</li>
+                    <li>• No dangerous or potentially hazardous objects including but not limited to weapons, knives, guns, fireworks, helmets, laser devices, bottles, musical instruments will be allowed in the venue. Offenders may be reported to the Police.</li>
                     <li>• No liability for injuries or damages to any person or property by sponsors/performers/organizers. All claims subject to Karnataka courts only.</li>
                     <li>• Organizers reserve the right to deny entry.</li>
                     <li>• Venue rules apply.</li>

@@ -64,7 +64,7 @@ export default function PrivacyPolicyPage() {
               What We Provide
             </h2>
             <p className="text-base leading-relaxed mb-4">
-              Soleado Elements Private Limited is an event management and
+              Soleado Elements Private Limited is the event management and
               experiential entertainment company engaged in conceptualising,
               organising, promoting, and executing live events, festivals,
               concerts, corporate events, brand activations, cultural programs,
