@@ -413,7 +413,7 @@ Whether you're coming with your closest crew or planning a big group outing, Ran
               <div className="bg-white border border-gray-200 rounded-lg shadow-lg p-6">
                 {/* Event Title */}
                 <h2 className="text-2xl font-bold text-black mb-6 leading-tight">
-                  {eventTitle}
+                  Rangotsav 2026
                 </h2>
 
                 {/* Event Details */}
