@@ -29,7 +29,7 @@ export default function LandingPage() {
         const { data: byTitle } = await supabase
           .from("events")
           .select("*")
-          .eq("title", "Rangotsav – 4th March, 2026")
+          .eq("title", "Rangotsav 2026")
           .maybeSingle();
         if (byTitle) eventData = byTitle;
 
