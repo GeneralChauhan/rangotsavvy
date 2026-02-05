@@ -90,7 +90,7 @@ export default function LandingPage() {
     );
   }
 
-  const eventTitle = event?.title || event?.name || "Rangotsav – 4th March, 2026";
+  const eventTitle = event?.title || event?.name || "Rangotsav 2026";
   const eventDescription = event?.description ||
     `Get ready to celebrate Holi like never before at Rangotsav 2026, Bangalore's most vibrant and curated Holi music festival.
 
@@ -280,7 +280,7 @@ Whether you're coming with your closest crew or planning a big group outing, Ran
                   <Clock className="h-5 w-5 text-gray-500 mt-0.5 flex-shrink-0" />
                   <div>
                     <p className="text-xs text-gray-500 mb-1">Duration</p>
-                    <p className="font-semibold text-gray-900">1 Hour</p>
+                    <p className="font-semibold text-gray-900">6 Hour</p>
                   </div>
                 </div>
                 <div className="p-4 bg-gray-50 rounded-lg border border-gray-200 flex items-start gap-3">
@@ -392,7 +392,7 @@ Whether you're coming with your closest crew or planning a big group outing, Ran
                     <li>• Tickets are valid only for the show date mentioned on the ticket. Tickets cannot be redeemed on any other date.</li>
                     <li>• No refund on purchased tickets is possible, even in case of any rescheduling.</li>
                     <li>• There might be a waiting time at the venue. Entry will be on a first-come, first-serve basis.</li>
-                    <li>• The maximum experience duration is 1 hour, after which guests will be asked to exit for the next batch.</li>
+                    <li>• The maximum experience duration is 6 hour, after which guests will be asked to exit for the next batch.</li>
                     <li>• Instagram or any other freebie offers can be collected on the show day only.</li>
                     <li>• Please maintain silence and do not use flashlights during the show. Violators may be asked to leave without refund.</li>
                     <li>• Security procedures, including frisking, remain the right of the management.</li>
@@ -487,7 +487,7 @@ Whether you're coming with your closest crew or planning a big group outing, Ran
                 <Clock className="h-5 w-5 text-gray-500 mt-0.5 flex-shrink-0" />
                 <div className="flex-1">
                   <p className="text-xs text-gray-500 mb-1">Duration</p>
-                  <p className="font-semibold text-gray-900">1 Hour</p>
+                  <p className="font-semibold text-gray-900">6 Hour</p>
                 </div>
               </div>
               <div className="flex items-start gap-3">
