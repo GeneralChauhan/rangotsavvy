@@ -580,11 +580,11 @@ Whether you're coming with your closest crew or planning a big group outing, Ran
             </p>
             <div className="flex flex-col sm:flex-row items-center justify-center gap-2 sm:gap-4 text-sm text-gray-600">
               <a
-                href="tel:+919035550824"
+                href="tel:+918050008171"
                 className="hover:text-gray-900 underline-offset-2 hover:underline"
                 data-umami-event="footer-call"
               >
-                +91 90355 50824
+                +91 80500 08171
               </a>
               <span className="hidden sm:inline text-gray-400">·</span>
               <a
