@@ -30,21 +30,33 @@ function parseDataUrl(dataUrl: string): { contentType: string; base64: string } 
 /**
  * Email HTML aligned with the website design: white background, gray scale,
  * Helvetica, bold headings, gray-200 borders, rounded-lg card for the ticket.
+ * Footer matches the landing page (logo, contact, policies, copyright).
+ * baseUrl: site origin (e.g. https://yoursite.com) for footer logo and links; optional.
  */
 function buildTicketEmailHtml(
   visitorName?: string,
   imageContentId: string = "ticket",
-  isComposite: boolean = false
+  isComposite: boolean = false,
+  baseUrl: string = ""
 ): string {
   const imgWidth = isComposite ? "400" : "240";
   const imgHeight = isComposite ? "560" : "240";
+  const logoUrl = baseUrl ? `${baseUrl.replace(/\/$/, "")}/gallery/thickandthin.png` : "";
+  const privacyUrl = baseUrl ? `${baseUrl.replace(/\/$/, "")}/privacy` : "#";
+  const refundUrl = baseUrl ? `${baseUrl.replace(/\/$/, "")}/refund` : "#";
+  const termsUrl = baseUrl ? `${baseUrl.replace(/\/$/, "")}/terms` : "#";
+
+  const footerLogo = logoUrl
+    ? `<img src="${logoUrl}" alt="SOLEADO" width="120" height="40" style="display: block; margin: 0 auto; height: 40px; width: auto; max-width: 120px;" />`
+    : `<p style="margin: 0; font-size: 14px; font-weight: 600; color: #111827; text-align: center;">SOLEADO ELEMENT</p>`;
+
   return `
 <!DOCTYPE html>
 <html>
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Here's your ticket</title>
+  <title>Rangotsav 2026 Tickets</title>
 </head>
 <body style="margin: 0; padding: 0; background-color: #ffffff; font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;">
   <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="max-width: 560px; margin: 0 auto; background-color: #ffffff;">
@@ -84,6 +96,39 @@ function buildTicketEmailHtml(
         <p style="margin: 0; font-size: 12px; color: #9ca3af;">
           See you there.
         </p>
+      </td>
+    </tr>
+    <tr>
+      <td style="padding: 32px 24px 24px; border-top: 1px solid #e5e7eb;">
+        <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="max-width: 560px;">
+          <tr>
+            <td style="padding-bottom: 24px; text-align: center;">
+              ${footerLogo}
+            </td>
+          </tr>
+          <tr>
+            <td style="text-align: center;">
+              <p style="margin: 0 0 4px 0; font-size: 12px; font-weight: 600; color: #111827;">Contact us</p>
+              <p style="margin: 0 0 12px 0; font-size: 12px; color: #6b7280;">Feel free to reach out to us using the provided contact details.</p>
+              <p style="margin: 0; font-size: 12px; color: #4b5563;">
+                <a href="tel:+919035550824" style="color: #111827; text-decoration: underline;">+91 90355 50824</a>
+                <span style="color: #9ca3af;"> · </span>
+                <a href="mailto:hello@soleadogroup.com" style="color: #111827; text-decoration: underline;">hello@soleadogroup.com</a>
+              </p>
+            </td>
+          </tr>
+          <tr>
+            <td style="padding-top: 16px; text-align: center; font-size: 12px; color: #6b7280;">
+              <a href="${privacyUrl}" style="color: #6b7280; text-decoration: underline;">Privacy Policy</a>
+              <span style="color: #9ca3af;"> · </span>
+              <a href="${refundUrl}" style="color: #6b7280; text-decoration: underline;">Refund Policy</a>
+              <span style="color: #9ca3af;"> · </span>
+              <a href="${termsUrl}" style="color: #6b7280; text-decoration: underline;">Terms &amp; Conditions</a>
+              <span style="color: #9ca3af;"> · </span>
+              <span style="color: #6b7280;">© 2026 SOLEADO ELEMENT PRIVATE LIMITED. All rights reserved.</span>
+            </td>
+          </tr>
+        </table>
       </td>
     </tr>
   </table>
@@ -147,14 +192,15 @@ export async function POST(request: NextRequest) {
     const imageBase64 = useComposite ? composite.buffer.toString("base64") : parsed.base64;
     const imageName = useComposite ? "ticket.png" : "ticket-qr.png";
 
-    const htmlBody = buildTicketEmailHtml(visitorName, imageContentId, useComposite);
+    const baseUrl = (process.env.NEXT_PUBLIC_SITE_URL || (process.env.VERCEL_URL ? `https://${process.env.VERCEL_URL}` : "")).replace(/\/$/, "") || "";
+    const htmlBody = buildTicketEmailHtml(visitorName, imageContentId, useComposite, baseUrl);
 
     const client = new EmailClient(normalizeConnectionString(connectionString));
 
     const message = {
       senderAddress,
       content: {
-        subject: "Here's your ticket.",
+        subject: "Rangotsav 2026 Tickets",
         html: htmlBody,
       },
       recipients: {
