@@ -497,13 +497,6 @@ Whether you're coming with your closest crew or planning a big group outing, Ran
               <div className="flex items-start gap-3">
                 <Info className="h-5 w-5 text-gray-500 mt-0.5 flex-shrink-0" />
                 <div className="flex-1">
-                  <p className="text-xs text-gray-500 mb-1">Entry Allowed For</p>
-                  <p className="font-semibold text-gray-900">All ages</p>
-                </div>
-              </div>
-              <div className="flex items-start gap-3">
-                <Info className="h-5 w-5 text-gray-500 mt-0.5 flex-shrink-0" />
-                <div className="flex-1">
                   <p className="text-xs text-gray-500 mb-1">Layout</p>
                   <p className="font-semibold text-gray-900">Open-Air</p>
                 </div>
