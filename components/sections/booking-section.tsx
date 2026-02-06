@@ -213,6 +213,7 @@ export function BookingSection({
   // Payment and success state
   const [bookingData, setBookingData] = useState<any>(null);
   const [processingPayment, setProcessingPayment] = useState(false);
+  const [postPaymentProcessing, setPostPaymentProcessing] = useState(false);
   const [qrCodeDataUrl, setQrCodeDataUrl] = useState<string | null>(null);
   const [confirmedBookingDetails, setConfirmedBookingDetails] = useState<any>(null);
 
@@ -735,7 +736,10 @@ export function BookingSection({
     const merchantOrderId = sessionStorage.getItem('phonePeMerchantOrderId');
     const bookingDataStr = sessionStorage.getItem('phonePeBookingData');
     
-    if (!merchantOrderId || !bookingDataStr) return;
+    if (!merchantOrderId || !bookingDataStr) {
+      setPostPaymentProcessing(false);
+      return;
+    }
 
     try {
       const bookingData = JSON.parse(bookingDataStr);
@@ -877,6 +881,7 @@ export function BookingSection({
       console.error("Error processing post-payment:", err);
       alert("Payment verification failed. Please contact support.");
     } finally {
+      setPostPaymentProcessing(false);
       sessionStorage.removeItem('phonePeMerchantOrderId');
       sessionStorage.removeItem('phonePeBookingData');
     }
@@ -886,6 +891,7 @@ export function BookingSection({
   useEffect(() => {
     const urlParams = new URLSearchParams(window.location.search);
     if (urlParams.get('payment_success') === 'true') {
+      setPostPaymentProcessing(true);
       handlePostPayment();
       // Clean up the URL
       window.history.replaceState({}, '', window.location.pathname);
@@ -1464,7 +1470,7 @@ export function BookingSection({
           )}
 
           {/* Fixed Bottom Bar - Mobile Style */}
-          {(currentStep === "sku" || currentStep === "checkout") && !(currentStep === "sku" && loading) && (
+          {(currentStep === "sku" || currentStep === "checkout") && !postPaymentProcessing && !(currentStep === "sku" && loading) && (
             <div className="sticky bottom-0 left-0 right-0 z-50 bg-white/95 backdrop-blur-lg border-t border-gray-200 shadow-lg mt-auto">
               <div className="flex items-center justify-between p-4 gap-4">
                 {/* Left Side - Price Info */}
@@ -1599,8 +1605,18 @@ export function BookingSection({
       </nav>
 
       <div className="relative z-10 h-screen overflow-y-auto">
+        {/* Post-payment: loader until QR generation and confirmation are done */}
+        {postPaymentProcessing && (
+          <section className="flex min-h-screen w-full flex-col items-center justify-center px-6">
+            <div className="flex flex-col items-center gap-6">
+              <div className="h-14 w-14 animate-spin rounded-full border-2 border-gray-200 border-t-gray-900" />
+              <p className="text-sm font-medium text-gray-500">Confirming your booking & generating your ticket...</p>
+            </div>
+          </section>
+        )}
+
         {/* Default step: full-screen loader while data is loading */}
-        {currentStep === "sku" && loading && (
+        {!postPaymentProcessing && currentStep === "sku" && loading && (
           <section className="flex min-h-screen w-full flex-col items-center justify-center px-6">
             <div className="flex flex-col items-center gap-6">
               <div className="h-14 w-14 animate-spin rounded-full border-2 border-gray-200 border-t-gray-900" />
@@ -1610,7 +1626,7 @@ export function BookingSection({
         )}
 
         {/* Ticket Selection Section (Step 1 of 2) */}
-        {currentStep === "sku" && !loading && (
+        {!postPaymentProcessing && currentStep === "sku" && !loading && (
         <section className="flex min-h-screen w-full flex-col justify-center px-6 pb-16 pt-24 md:px-12 md:pb-24">
           <div className="w-full max-w-4xl">
             <div className="mb-4 inline-block rounded-full border border-gray-200 bg-gray-50 px-4 py-1.5">
