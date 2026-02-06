@@ -502,13 +502,6 @@ Whether you're coming with your closest crew or planning a big group outing, Ran
                 </div>
               </div>
               <div className="flex items-start gap-3">
-                <Users className="h-5 w-5 text-gray-500 mt-0.5 flex-shrink-0" />
-                <div className="flex-1">
-                  <p className="text-xs text-gray-500 mb-1">Seating Arrangement</p>
-                  <p className="font-semibold text-gray-900">Standing</p>
-                </div>
-              </div>
-              <div className="flex items-start gap-3">
                 <Smile className="h-5 w-5 text-gray-500 mt-0.5 flex-shrink-0" />
                 <div className="flex-1">
                   <p className="text-xs text-gray-500 mb-1">Kid Friendly?</p>
