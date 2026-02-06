@@ -46,9 +46,7 @@ function buildTicketEmailHtml(
   const refundUrl = baseUrl ? `${baseUrl.replace(/\/$/, "")}/refund` : "#";
   const termsUrl = baseUrl ? `${baseUrl.replace(/\/$/, "")}/terms` : "#";
 
-  const footerLogo = logoUrl
-    ? `<img src="${logoUrl}" alt="SOLEADO" width="120" height="40" style="display: block; margin: 0 auto; height: 40px; width: auto; max-width: 120px;" />`
-    : `<p style="margin: 0; font-size: 14px; font-weight: 600; color: #111827; text-align: center;">SOLEADO ELEMENT</p>`;
+  const footerLogo = `<p style="margin: 0; font-size: 14px; font-weight: 600; color: #111827; text-align: center;">SOLEADO ELEMENTS PRIVATE LIMITED</p>`;
 
   return `
 <!DOCTYPE html>
@@ -89,6 +87,9 @@ function buildTicketEmailHtml(
         <p style="margin: 6px 0 0 0; font-size: 14px; color: #6b7280;">
           White Feather, Electronic City, Bangalore
         </p>
+        <p style="margin: 12px 0 0 0;">
+          <a href="https://www.google.com/maps?um=1&ie=UTF-8&fb=1&gl=in&sa=X&geocode=KaHciGqibK47MRRDarACFk0f&daddr=NICE+Tollgate,+40/41-1,+Hobli-Begur,+PESU+ECC+Main+Rd,+opposite+metro+wholesale+%26,+Electronic+City+Phase+I,+Electronic+City,+Beratena+Agrahara,+Bengaluru,+Karnataka+560100" style="display: inline-block; background-color: #000000; color: #ffffff; font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; padding: 12px 24px; text-decoration: none; border-radius: 8px;">Get directions</a>
+        </p>
       </td>
     </tr>
     <tr>
@@ -111,7 +112,7 @@ function buildTicketEmailHtml(
               <p style="margin: 0 0 4px 0; font-size: 12px; font-weight: 600; color: #111827;">Contact us</p>
               <p style="margin: 0 0 12px 0; font-size: 12px; color: #6b7280;">Feel free to reach out to us using the provided contact details.</p>
               <p style="margin: 0; font-size: 12px; color: #4b5563;">
-                <a href="tel:+919035550824" style="color: #111827; text-decoration: underline;">+91 90355 50824</a>
+                <a href="tel:+918050008171" style="color: #111827; text-decoration: underline;">+91 80500 08171</a>
                 <span style="color: #9ca3af;"> · </span>
                 <a href="mailto:hello@soleadogroup.com" style="color: #111827; text-decoration: underline;">hello@soleadogroup.com</a>
               </p>

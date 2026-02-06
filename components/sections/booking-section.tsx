@@ -440,10 +440,25 @@ export function BookingSection({
     );
   };
 
-  const getTotalAmount = () => {
+  const PROCESSING_FEE_PERCENT = 4.5;
+  const GST_ON_PROCESSING_PERCENT = 18;
+
+  const getAmountAfterDiscount = () => {
     const subtotal = getSubtotal();
     const discount = appliedCoupon?.discount_amount || 0;
     return Math.max(0, subtotal - discount);
+  };
+
+  const getProcessingFee = () => {
+    return getAmountAfterDiscount() * (PROCESSING_FEE_PERCENT / 100);
+  };
+
+  const getGstOnProcessingFee = () => {
+    return getProcessingFee() * (GST_ON_PROCESSING_PERCENT / 100);
+  };
+
+  const getTotalAmount = () => {
+    return getAmountAfterDiscount() + getProcessingFee() + getGstOnProcessingFee();
   };
 
   const handleApplyCoupon = async () => {
@@ -509,20 +524,23 @@ export function BookingSection({
     // Combine first and last name
     const visitorName = `${firstName} ${lastName}`.trim();
 
-    // Calculate subtotal and discount
+    // Calculate subtotal, discount, and fees
     const subtotal = getSubtotal();
     const discountAmount = appliedCoupon?.discount_amount || 0;
+    const processingFee = getProcessingFee();
+    const gstOnProcessingFee = getGstOnProcessingFee();
     const finalTotal = getTotalAmount();
 
     // Calculate discount per item proportionally
     const discountPerItem = subtotal > 0 ? discountAmount / subtotal : 0;
 
     // Create a booking for each order item (or combine into one booking with total quantity)
-    // For simplicity, we'll create one booking per SKU
-    const bookings = orderItems.map((item) => {
+    // Add processing fee + GST to first booking so sum of total_price matches charged amount
+    const bookings = orderItems.map((item, index) => {
       const itemSubtotal = item.price * item.quantity;
       const itemDiscount = itemSubtotal * discountPerItem;
       const itemTotal = itemSubtotal - itemDiscount;
+      const feesToAdd = index === 0 ? processingFee + gstOnProcessingFee : 0;
 
       return {
         time_slot_id: selectedTimeSlot,
@@ -530,7 +548,7 @@ export function BookingSection({
         quantity: item.quantity,
         subtotal: itemSubtotal,
         discount_amount: itemDiscount,
-        total_price: itemTotal,
+        total_price: itemTotal + feesToAdd,
         coupon_code: appliedCoupon?.code || null,
         visitor_name: visitorName,
         visitor_email: visitorEmail,
@@ -651,6 +669,8 @@ export function BookingSection({
           ticketTypes: ticketTypes,
           subtotal: subtotal,
           discountAmount: totalDiscount,
+          processingFee,
+          gstOnProcessingFee,
           totalPrice: totalPrice,
           couponCode: appliedCoupon?.code || null,
           timeSlot: timeSlot,
@@ -1913,6 +1933,14 @@ export function BookingSection({
                     <span>-₹{appliedCoupon.discount_amount.toFixed(0)}</span>
                   </div>
                 )}
+                <div className="flex justify-between text-sm text-gray-700">
+                  <span>Processing Fee ({PROCESSING_FEE_PERCENT}%)</span>
+                  <span>₹{getProcessingFee().toFixed(2)}</span>
+                </div>
+                <div className="flex justify-between text-sm text-gray-700">
+                  <span>GST on Processing Fee (IGST @ {GST_ON_PROCESSING_PERCENT}%)</span>
+                  <span>₹{getGstOnProcessingFee().toFixed(2)}</span>
+                </div>
                 <div className="flex justify-between font-bold text-lg text-gray-900 pt-2 border-t border-gray-200">
                   <span>Total Amount</span>
                   <span>₹{getTotalAmount().toFixed(0)}</span>
@@ -1991,23 +2019,33 @@ export function BookingSection({
                     ))}
                   </div>
                   <div className="border-t border-gray-200 pt-4 mt-4 space-y-2">
-                    {bookingData.subtotal && bookingData.subtotal !== bookingData.totalPrice && (
-                      <>
-                        <div className="flex justify-between text-sm text-gray-700">
-                          <span>Subtotal</span>
-                          <span>₹{bookingData.subtotal.toFixed(0)}</span>
-                        </div>
-                        {bookingData.discountAmount && bookingData.discountAmount > 0 && (
-                          <div className="flex justify-between text-sm text-green-600">
-                            <span>Discount {bookingData.couponCode ? `(${bookingData.couponCode})` : ""}</span>
-                            <span>-₹{bookingData.discountAmount.toFixed(0)}</span>
-                          </div>
-                        )}
-                      </>
+                    {bookingData.subtotal != null && (
+                      <div className="flex justify-between text-sm text-gray-700">
+                        <span>Subtotal</span>
+                        <span>₹{bookingData.subtotal.toFixed(0)}</span>
+                      </div>
+                    )}
+                    {bookingData.discountAmount != null && bookingData.discountAmount > 0 && (
+                      <div className="flex justify-between text-sm text-green-600">
+                        <span>Discount {bookingData.couponCode ? `(${bookingData.couponCode})` : ""}</span>
+                        <span>-₹{bookingData.discountAmount.toFixed(0)}</span>
+                      </div>
+                    )}
+                    {bookingData.processingFee != null && bookingData.processingFee > 0 && (
+                      <div className="flex justify-between text-sm text-gray-700">
+                        <span>Processing Fee (4.5%)</span>
+                        <span>₹{bookingData.processingFee.toFixed(2)}</span>
+                      </div>
+                    )}
+                    {bookingData.gstOnProcessingFee != null && bookingData.gstOnProcessingFee > 0 && (
+                      <div className="flex justify-between text-sm text-gray-700">
+                        <span>GST on Processing Fee (IGST @ 18%)</span>
+                        <span>₹{bookingData.gstOnProcessingFee.toFixed(2)}</span>
+                      </div>
                     )}
                     <div className="flex justify-between items-center pt-2 border-t border-gray-200">
                       <span className="text-black">Total Amount</span>
-                      <span className="text-3xl font-light text-black">₹{bookingData.totalPrice}</span>
+                      <span className="text-3xl font-light text-black">₹{Number(bookingData.totalPrice).toFixed(0)}</span>
                     </div>
                   </div>
                 </CardContent>
